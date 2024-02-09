@@ -21,6 +21,7 @@ public:
 };
 
 void printMatrix(string matrix);
+void print(shared_ptr<Node> node);
 void solvePuzzle_bfs(string input, string goal);
 string swapCharacters(string L, int index, int n) {
     string result = L;
@@ -66,6 +67,34 @@ void printMatrix(string matrix)
         }
         cout << endl;
     }
+}
+
+void print(shared_ptr<Node> node) {
+
+    stack<shared_ptr<Node>> path;
+
+    while (node != nullptr) {
+        path.push(node);
+        node = node->parent;
+    }
+
+    if (!path.empty()) {
+        path.pop();
+    }
+
+    int step_data = 1;
+
+    while (!path.empty()) {
+
+        shared_ptr<Node> step = path.top();
+        path.pop();
+
+        cout << "\nstep " << step_data << " => action :  " << step->action << " ";
+        cout << ", State: " << step->data << endl;
+        printMatrix(step->data);
+        step_data++;
+    }
+
 }
 
 void solvePuzzle_bfs(string input, string goal)
