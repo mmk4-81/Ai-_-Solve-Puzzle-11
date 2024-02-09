@@ -9,6 +9,16 @@
 
 using namespace std;
 
+class Node {
+public:
+    string data;
+    shared_ptr<Node> parent;
+    string action;
+    int level;
+
+    Node(string data, shared_ptr<Node> parent, string action, int level) : data(data), parent(parent), action(action), level(level) {}
+};
+
 void printMatrix(string matrix);
 void solvePuzzle_bfs(string input, string goal); 
 int main()
@@ -52,5 +62,5 @@ void printMatrix(string matrix)
 }
 
 void solvePuzzle_bfs(string input, string goal) {
-    
+
 }
