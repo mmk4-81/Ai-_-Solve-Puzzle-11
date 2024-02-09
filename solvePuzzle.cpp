@@ -23,7 +23,8 @@ public:
 void printMatrix(string matrix);
 void print(shared_ptr<Node> node);
 void solvePuzzle_bfs(string input, string goal);
-string swapCharacters(string L, int index, int n) {
+string swapCharacters(string L, int index, int n)
+{
     string result = L;
     swap(result[index], result[index + n]);
     return result;
@@ -69,22 +70,26 @@ void printMatrix(string matrix)
     }
 }
 
-void print(shared_ptr<Node> node) {
+void print(shared_ptr<Node> node)
+{
 
     stack<shared_ptr<Node>> path;
 
-    while (node != nullptr) {
+    while (node != nullptr)
+    {
         path.push(node);
         node = node->parent;
     }
 
-    if (!path.empty()) {
+    if (!path.empty())
+    {
         path.pop();
     }
 
     int step_data = 1;
 
-    while (!path.empty()) {
+    while (!path.empty())
+    {
 
         shared_ptr<Node> step = path.top();
         path.pop();
@@ -94,7 +99,6 @@ void print(shared_ptr<Node> node) {
         printMatrix(step->data);
         step_data++;
     }
-
 }
 
 void solvePuzzle_bfs(string input, string goal)
@@ -110,7 +114,12 @@ void solvePuzzle_bfs(string input, string goal)
         shared_ptr<Node> L = frontier.front();
         frontier.pop();
 
-     
+        if (L->data == goal)
+        {
+            print(L);
+            cout << "\nTotal Nodes in Frontier: " << frontier.size() << endl;
+            return;
+        }
 
         int indexBlank = L->data.find('o');
 
